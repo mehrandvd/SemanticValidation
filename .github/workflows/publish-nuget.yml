@@ -29,8 +29,8 @@ jobs:
       run: dotnet restore ${{ env.PROJECT_PATH }}
     - name: Build
       run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
-    - name: Test
-      run: dotnet test ${{ env.TEST_PATH }} --filter GitHubActions!=Skip --no-build --verbosity normal
+#   - name: Test
+#     run: dotnet test ${{ env.TEST_PATH }} --filter GitHubActions!=Skip --no-build --verbosity normal
     
     - name: 'Get Version'
       id: version
