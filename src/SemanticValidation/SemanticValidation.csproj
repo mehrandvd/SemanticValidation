@@ -15,6 +15,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Plugins\TestPlugin\AreSame\config.json" />
+    <None Remove="Plugins\TestPlugin\AreSame\skprompt.txt" />
+    <None Remove="Plugins\TestPlugin\HasCondition\config.json" />
+    <None Remove="Plugins\TestPlugin\HasCondition\skprompt.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Plugins\TestPlugin\AreSame\config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\TestPlugin\AreSame\skprompt.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\TestPlugin\HasCondition\config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Plugins\TestPlugin\HasCondition\skprompt.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
@@ -27,21 +49,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Plugins\TestPlugin\HasCondition\config.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Plugins\TestPlugin\HasCondition\skprompt.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Plugins\TestPlugin\AreSame\config.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Plugins\TestPlugin\AreSame\skprompt.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
