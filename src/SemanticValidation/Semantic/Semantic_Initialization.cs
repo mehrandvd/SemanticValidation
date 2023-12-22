@@ -20,8 +20,13 @@ public partial class Semantic
         TestKernel = builder.Build();
 
         var dir = Environment.CurrentDirectory;
+        var testPluginDir = Path.Combine(dir, "Plugins", "TestPlugin");
+        if (!Directory.Exists(testPluginDir))
+        {
+            throw new InvalidOperationException($"TestPlugin directory does not exist: {testPluginDir}");
+        }
 
-        var testPlugin = TestKernel.CreatePluginFromPromptDirectory(Path.Combine(dir, "Plugins", "TestPlugin"));
+        var testPlugin = TestKernel.CreatePluginFromPromptDirectory(testPluginDir);
 
         AreSameSkFunc = testPlugin["AreSame"];
         HasConditionFunc = testPlugin["HasCondition"];
