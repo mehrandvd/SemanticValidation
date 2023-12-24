@@ -16,8 +16,11 @@ namespace SemanticValidation.Tests
             var endpoint =
                 Environment.GetEnvironmentVariable("openai-endpoint", EnvironmentVariableTarget.User) ??
                 throw new Exception("No Endpoint in environment variables.");
+            var deploymentName =
+                Environment.GetEnvironmentVariable("openai-deployment-name", EnvironmentVariableTarget.User) ??
+                throw new Exception("No DeploymentName in environment variables.");
 
-            Semantic = new Semantic(endpoint, apiKey);
+            Semantic = new Semantic(deploymentName, endpoint, apiKey);
         }
 
         [Theory]

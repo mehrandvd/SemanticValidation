@@ -9,30 +9,28 @@ public partial class Semantic
 {
     private Kernel TestKernel { get; }
 
-    public KernelFunction AreSameSkFunc { get; set; }
+    public KernelFunction AreSameFunc { get; set; } = default!;
 
-    public KernelFunction HasConditionFunc { get; set; }
+    public KernelFunction HasConditionFunc { get; set; } = default!;
 
-    public Semantic(string endpoint, string apiKey)
+    public Semantic(string deploymentName, string endpoint, string apiKey)
     {
         var builder = Kernel.CreateBuilder();
-        builder.AddAzureOpenAIChatCompletion("gpt-35-turbo-test", endpoint, apiKey);
+        builder.AddAzureOpenAIChatCompletion(deploymentName, endpoint, apiKey);
 
         TestKernel = builder.Build();
+        InitializeKernel();
+    }
 
-        var dir = Environment.CurrentDirectory;
-        var testPluginDir = Path.Combine(dir, "Plugins", "TestPlugin");
-        if (!Directory.Exists(testPluginDir))
-        {
-            throw new InvalidOperationException($"TestPlugin directory does not exist: {testPluginDir}");
-        }
+    public Semantic(Kernel kernel)
+    {
+        TestKernel = kernel;
+        InitializeKernel();
+    }
 
-        //var testPlugin = TestKernel.CreatePluginFromPromptDirectory(testPluginDir);
-
-        //AreSameSkFunc = testPlugin["AreSame"];
-        //HasConditionFunc = testPlugin["HasCondition"];
-
-        AreSameSkFunc = TestKernel.CreateFunctionFromPrompt("""
+    public void InitializeKernel()
+    {
+        AreSameFunc = TestKernel.CreateFunctionFromPrompt("""
             Check if the first text and the second text are semantically equivalent:
 
             [[[First Text]]]

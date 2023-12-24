@@ -9,7 +9,7 @@ public partial class Semantic
     public async Task<SemanticValidationResult> AreSameAsync(string first, string second)
     {
         var skresult = (
-            await AreSameSkFunc.InvokeAsync(TestKernel, new KernelArguments()
+            await AreSameFunc.InvokeAsync(TestKernel, new KernelArguments()
             {
                 ["first_text"] = first,
                 ["second_text"] = second
