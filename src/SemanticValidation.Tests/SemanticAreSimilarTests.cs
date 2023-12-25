@@ -2,12 +2,12 @@ using Xunit.Abstractions;
 
 namespace SemanticValidation.Tests
 {
-    public class SemanticAreSameTests
+    public class SemanticAreSimilarTests
     {
         private Semantic Semantic { get; set; }
 
         private ITestOutputHelper Output { get; set; }
-        public SemanticAreSameTests(ITestOutputHelper output)
+        public SemanticAreSimilarTests(ITestOutputHelper output)
         {
             Output = output;
 
@@ -25,18 +25,18 @@ namespace SemanticValidation.Tests
         }
 
         [Theory]
-        [MemberData(nameof(GetSameData))]
-        public async Task AreSame_True_MustWork(string first, string second)
+        [MemberData(nameof(GetSimilarData))]
+        public async Task AreSimilar_True_MustWork(string first, string second)
         {
-            var result = await Semantic.AreSameAsync(first, second);
+            var result = await Semantic.AreSimilarAsync(first, second);
             Assert.True(result.Success, result.Message);
         }
 
         [Theory]
-        [MemberData(nameof(GetNotSameData))]
-        public async Task AreSame_False_MustWork(string first, string second)
+        [MemberData(nameof(GetNonSimilarData))]
+        public async Task AreSimilar_False_MustWork(string first, string second)
         {
-            var result = await Semantic.AreSameAsync(first, second);
+            var result = await Semantic.AreSimilarAsync(first, second);
             Assert.False(result.Success);
             Output.WriteLine($"""
                 [Explanation]
@@ -44,7 +44,7 @@ namespace SemanticValidation.Tests
                 """);
         }
 
-        public static IEnumerable<object[]> GetNotSameData()
+        public static IEnumerable<object[]> GetNonSimilarData()
         {
             yield return new object[]
             {
@@ -58,7 +58,7 @@ namespace SemanticValidation.Tests
             };
         }
 
-        public static IEnumerable<object[]> GetSameData()
+        public static IEnumerable<object[]> GetSimilarData()
         {
             yield return new object[]
             {

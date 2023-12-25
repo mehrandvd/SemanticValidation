@@ -6,20 +6,20 @@ namespace SemanticValidation;
 
 public partial class Semantic
 {
-    public async Task<SemanticValidationResult> AreSameAsync(string first, string second)
+    public async Task<SemanticValidationResult> AreSimilarAsync(string first, string second)
     {
-        var skresult = (
-            await AreSameFunc.InvokeAsync(TestKernel, new KernelArguments()
+        var skResult = (
+            await AreSimilarFunc.InvokeAsync(TestKernel, new KernelArguments()
             {
                 ["first_text"] = first,
                 ["second_text"] = second
             })
         ).GetValue<string>() ?? "";
 
-        var result = JsonSerializer.Deserialize<SemanticValidationResult>(skresult);
+        var result = JsonSerializer.Deserialize<SemanticValidationResult>(skResult);
 
         if (result is null)
-            throw new InvalidOperationException("Can not assert Same");
+            throw new InvalidOperationException("Can not assert Similarity");
 
         return result;
     }

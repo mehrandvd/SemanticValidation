@@ -8,7 +8,7 @@ namespace SemanticValidation
     {
         public async Task<SemanticValidationResult> HasConditionAsync(string text, string condition)
         {
-            var skresult = (
+            var skResult = (
                 await HasConditionFunc.InvokeAsync(TestKernel, new KernelArguments()
                 {
                     ["text"] = text,
@@ -16,10 +16,10 @@ namespace SemanticValidation
                 })
             ).GetValue<string>() ?? "";
 
-            var result = JsonSerializer.Deserialize<SemanticValidationResult>(skresult);
+            var result = JsonSerializer.Deserialize<SemanticValidationResult>(skResult);
 
             if (result is null)
-                throw new InvalidOperationException("Can not assert Same");
+                throw new InvalidOperationException("Can not assert Similarity");
 
             return result;
         }

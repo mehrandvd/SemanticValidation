@@ -9,7 +9,7 @@ public partial class Semantic
 {
     private Kernel TestKernel { get; }
 
-    public KernelFunction AreSameFunc { get; set; } = default!;
+    public KernelFunction AreSimilarFunc { get; set; } = default!;
 
     public KernelFunction HasConditionFunc { get; set; } = default!;
 
@@ -30,7 +30,7 @@ public partial class Semantic
 
     public void InitializeKernel()
     {
-        AreSameFunc = TestKernel.CreateFunctionFromPrompt("""
+        AreSimilarFunc = TestKernel.CreateFunctionFromPrompt("""
             Check if the first text and the second text are semantically equivalent:
 
             [[[First Text]]]
