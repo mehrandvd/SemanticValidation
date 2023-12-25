@@ -15,28 +15,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Plugins\TestPlugin\AreSimilar\config.json" />
-    <None Remove="Plugins\TestPlugin\AreSimilar\skprompt.txt" />
-    <None Remove="Plugins\TestPlugin\HasCondition\config.json" />
-    <None Remove="Plugins\TestPlugin\HasCondition\skprompt.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Plugins\TestPlugin\AreSimilar\config.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Plugins\TestPlugin\AreSimilar\skprompt.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Plugins\TestPlugin\HasCondition\config.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Plugins\TestPlugin\HasCondition\skprompt.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
