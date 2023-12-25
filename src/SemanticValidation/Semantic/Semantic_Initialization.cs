@@ -22,9 +22,9 @@ public partial class Semantic
 {
     private Kernel TestKernel { get; }
 
-    public KernelFunction AreSimilarFunc { get; set; } = default!;
+    private KernelFunction AreSimilarFunc { get; set; } = default!;
 
-    public KernelFunction HasConditionFunc { get; set; } = default!;
+    private KernelFunction HasConditionFunc { get; set; } = default!;
 
     /// <summary>
     /// The Semantic library needs a SemanticKernel kernel to work.
