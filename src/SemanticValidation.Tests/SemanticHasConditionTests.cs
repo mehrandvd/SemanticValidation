@@ -28,7 +28,7 @@ namespace SemanticValidation.Tests
         public async Task HasCondition_True_MustWork(string text, string condition)
         {
             var result = await Semantic.HasConditionAsync(text, condition);
-            Assert.True(result.Success, result.Message);
+            Assert.True(result.IsValid, result.Reason);
         }
 
         [Theory]
@@ -36,10 +36,10 @@ namespace SemanticValidation.Tests
         public async Task HasCondition_False_MustWork(string text, string condition)
         {
             var result = await Semantic.HasConditionAsync(text, condition);
-            Assert.False(result.Success);
+            Assert.False(result.IsValid);
             Output.WriteLine($"""
                 [Explanation]
-                {result.Message}
+                {result.Reason}
                 """);
         }
 

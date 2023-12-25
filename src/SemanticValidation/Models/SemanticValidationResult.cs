@@ -7,11 +7,21 @@ using System.Threading.Tasks;
 
 namespace SemanticValidation.Models
 {
+    /// <summary>
+    /// The result of a semantic validation
+    /// </summary>
     public class SemanticValidationResult
     {
+        /// <summary>
+        /// Whether the semantic validation is successful or not.
+        /// </summary>
         [JsonPropertyName("success")]
-        public bool Success { get; set; }
+        public bool IsValid { get; set; }
+
+        /// <summary>
+        /// The reason for the validation result.
+        /// </summary>
         [JsonPropertyName("message")]
-        public string? Message { get; set; }
+        public string? Reason { get; set; }
     }
 }

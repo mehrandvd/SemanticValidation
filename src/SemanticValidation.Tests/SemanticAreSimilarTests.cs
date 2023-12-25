@@ -29,7 +29,7 @@ namespace SemanticValidation.Tests
         public async Task AreSimilar_True_MustWork(string first, string second)
         {
             var result = await Semantic.AreSimilarAsync(first, second);
-            Assert.True(result.Success, result.Message);
+            Assert.True(result.IsValid, result.Reason);
         }
 
         [Theory]
@@ -37,10 +37,10 @@ namespace SemanticValidation.Tests
         public async Task AreSimilar_False_MustWork(string first, string second)
         {
             var result = await Semantic.AreSimilarAsync(first, second);
-            Assert.False(result.Success);
+            Assert.False(result.IsValid);
             Output.WriteLine($"""
                 [Explanation]
-                {result.Message}
+                {result.Reason}
                 """);
         }
 
