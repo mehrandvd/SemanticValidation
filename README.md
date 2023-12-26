@@ -1,5 +1,7 @@
 # Semantic Validation
-Semantic Validation is a library to **bring OpenAI into the validation systems** like:
+SemanticValidation is a library that integrates OpenAI’s powerful language models with validation systems. It allows you to perform semantic checks on your data and queries using natural language understanding.
+
+It **brings the power of OpenAI into the validation systems** as easily as this:
 ```csharp
 var result = Semantic.AreSimilar("This automobile is red", "The car is red");
 
@@ -32,14 +34,26 @@ Console.WriteLine(result.Reason);
 // The input text does not talk about trees
 ```
 
-## How to use?
-Install the [SemanticValidation NuGet package](https://www.nuget.org/packages/SemanticValidation) using this command:
-```command
+## Features
+- **Brings the power of OpenAI into the validation systems**: You can use OpenAI's language models to perform semantic validation on your data and queries with a simple and intuitive syntax.
+- **Provides explanatory feedback**: When a semantic check fails, it explains why, thanks to OpenAI's natural language generation capabilities.
+- **Uses OpenAI and SemanticKernel under the hood**: Semantic Validation relies on OpenAI and SemanticKernel to do all the semantic stuff. SemanticKernel is a library that provides a unified interface to interact with OpenAI's language models.
+
+## Requirements
+- .NET 5.0 or higher
+- An OpenAI API key
+- SemanticKernel 1.0.0 or higher
+
+Here is a possible improved version of the text:
+
+## Installation
+Semantic Validation is available as a [NuGet](https://www.nuget.org/packages/SemanticValidation) package that you can easily install in your project. To do so, run the following command in your terminal:
+```bash
 dotnet add package SemanticValidation
 ```
 
-And then instantiate it using your OpenAI subscription:
+Next, you need to create an instance of the `Semantic` class and pass your OpenAI subscription details as parameters:
 ```csharp
 var semantic = new Semantic(deployment, endpoint, apiKey);
 ```
-All done, enjoy using it!
+That's it! You are ready to use Semantic Validation in your code. 😊
