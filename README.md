@@ -44,11 +44,9 @@ Console.WriteLine(result.Reason);
 - **Uses OpenAI and SemanticKernel under the hood**: Semantic Validation relies on OpenAI and SemanticKernel to do all the semantic stuff. SemanticKernel is a library that provides a unified interface to interact with OpenAI's language models.
 
 ## Requirements
-- .NET 5.0 or higher
+- .NET 8.0 or higher
 - An OpenAI API key
-- SemanticKernel 1.0.0 or higher
 
-Here is a possible improved version of the text:
 
 ## Installation
 Semantic Validation is available as a [NuGet](https://www.nuget.org/packages/SemanticValidation) package that you can easily install in your project. To do so, run the following command in your terminal:
