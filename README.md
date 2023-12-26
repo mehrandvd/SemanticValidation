@@ -22,7 +22,7 @@ Console.WriteLine(result.IsValid);
 Console.WriteLine(result.Reason);
 // The first text describes a red bicycle, while the second text describes a red car. They are not semantically equivalent.
 ```
-Under the hood, it uses OpenAI and SemanticKernel to do all the semantic stuff.
+Under the hood, it uses OpenAI and [SemanticKernel](https://github.com/microsoft/semantic-kernel/) to do all the semantic stuff.
 
 There are other semantic methods available too. The `HasConditoin` checks if a `text` meets a special `condition`. And again watch how 
 great it describes the reason for semantic validation failure.
