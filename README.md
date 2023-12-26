@@ -1,4 +1,8 @@
 # Semantic Validation
+[![Build and Deploy](https://github.com/mehrandvd/SemanticValidation/actions/workflows/build.yml/badge.svg)](https://github.com/mehrandvd/SemanticValidation/actions/workflows/build.yml)
+[![NuGet version (SemanticValidation)](https://img.shields.io/nuget/v/SemanticValidation.svg?style=flat)](https://www.nuget.org/packages/SemanticValidation/)
+[![NuGet downloads](https://img.shields.io/nuget/dt/SemanticValidation.svg?style=flat)](https://www.nuget.org/packages/SemanticValidation)
+
 SemanticValidation is a library that integrates OpenAI’s powerful language models with validation systems. It allows you to perform semantic checks on your data and queries using natural language understanding.
 
 It **brings the power of OpenAI into the validation systems** as easily as this:
