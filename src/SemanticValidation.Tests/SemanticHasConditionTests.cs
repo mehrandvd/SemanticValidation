@@ -58,7 +58,7 @@ namespace SemanticValidation.Tests
             yield return new object[]
             {
                 "This car is red",
-                "I talks about trees"
+                "It talks about trees"
             };
             yield return new object[]
             {
@@ -82,12 +82,12 @@ namespace SemanticValidation.Tests
             yield return new object[]
             {
                 "This car is red",
-                "I talks about cars"
+                "It talks about cars"
             };
             yield return new object[]
             {
                 "This car is red",
-                "I talks about red"
+                "It talks about red"
             };
 
         }
