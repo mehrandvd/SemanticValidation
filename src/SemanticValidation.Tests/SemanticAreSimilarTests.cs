@@ -1,4 +1,4 @@
-using Xunit.Abstractions;
+﻿using Xunit.Abstractions;
 
 namespace SemanticValidation.Tests
 {
@@ -55,6 +55,11 @@ namespace SemanticValidation.Tests
             {
                 "This bicycle is red",
                 "The car is red"
+            };
+            yield return new object[]
+            {
+                "بفرما بشین!",
+                "بشین بتمرگ!"
             };
         }
 
