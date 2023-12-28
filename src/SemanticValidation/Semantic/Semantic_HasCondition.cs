@@ -1,6 +1,7 @@
 ﻿using Microsoft.SemanticKernel;
 using System.Text.Json;
 using SemanticValidation.Models;
+using SemanticValidation.Utils;
 
 namespace SemanticValidation
 {
@@ -30,7 +31,7 @@ namespace SemanticValidation
                 })
             ).GetValue<string>() ?? "";
 
-            var result = JsonSerializer.Deserialize<SemanticValidationResult>(skResult);
+            var result = SemanticUtils.PowerParseJson<SemanticValidationResult>(skResult);
 
             if (result is null)
                 throw new InvalidOperationException("Can not assert Similarity");
