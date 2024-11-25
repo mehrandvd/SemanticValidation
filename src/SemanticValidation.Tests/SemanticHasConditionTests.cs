@@ -1,4 +1,6 @@
-﻿using Xunit.Abstractions;
+﻿using Azure.AI.OpenAI;
+using Microsoft.Extensions.AI;
+using Xunit.Abstractions;
 
 namespace SemanticValidation.Tests
 {
@@ -20,7 +22,11 @@ namespace SemanticValidation.Tests
                 Environment.GetEnvironmentVariable("openai-deployment-name", EnvironmentVariableTarget.User) ??
                 throw new Exception("No DeploymentName in environment variables.");
 
-            Semantic = new Semantic(deploymentName, endpoint, apiKey);
+            Semantic = new Semantic(
+                new AzureOpenAIClient(
+                    new Uri(endpoint),
+                    new System.ClientModel.ApiKeyCredential(apiKey)
+                ).AsChatClient(deploymentName));
         }
 
         [Theory]

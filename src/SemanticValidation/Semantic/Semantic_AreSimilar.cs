@@ -1,5 +1,5 @@
-﻿using Microsoft.SemanticKernel;
-using System.Text.Json;
+﻿using System.Text.Json;
+using Microsoft.Extensions.AI;
 using SemanticValidation.Models;
 using SemanticValidation.Utils;
 
@@ -23,18 +23,50 @@ public partial class Semantic
     /// <exception cref="InvalidOperationException">If the OpenAI was unable to generate a valid response.</exception>
     public async Task<SemanticValidationResult> AreSimilarAsync(string first, string second)
     {
-        var skResult = (
-            await AreSimilarFunc.InvokeAsync(TestKernel, new KernelArguments()
-            {
-                ["first_text"] = first,
-                ["second_text"] = second
-            })
-        ).GetValue<string>() ?? "";
+        var prompt =
+            $$"""
+            Check if the first text and the second text are semantically equivalent:
 
-        var result = SemanticUtils.PowerParseJson<SemanticValidationResult>(skResult);
+            [[[First Text]]]
+
+            {{first}}
+
+            [[[End of First Text]]]
+
+
+            [[[Second Text]]]
+
+            {{second}}
+
+            [[[End of Second Text]]]
+
+            The result should be a valid json like:
+
+            {
+                "success": true or false,
+                "message": "If they are not equivalent, explain here the difference"
+            }
+
+
+            RESULT: 
+            """;
+
+        var response =
+            await ChatClient.CompleteAsync(
+                [
+                    new ChatMessage(ChatRole.User, prompt)
+                ],
+                options: new ChatOptions
+                {
+
+                });
+
+        var answer = response.Message.Text ?? throw new InvalidOperationException("Can not assert the similarity");
+
+        var result = SemanticUtils.PowerParseJson<SemanticValidationResult>(answer);
 
         if (result is null)
-            throw new InvalidOperationException("Can not assert Similarity");
+            throw new InvalidOperationException("Can not assert the similarity");
 
         return result;
     }
