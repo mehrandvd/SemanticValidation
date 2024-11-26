@@ -61,7 +61,7 @@ var chatClient = new AzureOpenAIClient
     new Uri(endpoint),
     new System.ClientModel.ApiKeyCredential(apiKey)
   )
-  .AsChatClient(deploymentName)
+  .AsChatClient(deploymentName);
 
 var semantic = new Semantic(chatClient);
 ```
