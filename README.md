@@ -54,8 +54,15 @@ Semantic Validation is available as a [NuGet](https://www.nuget.org/packages/Sem
 dotnet add package SemanticValidation
 ```
 
-Next, you need to create an instance of the `Semantic` class and pass your OpenAI subscription details as parameters:
+Next, you need to create an instance of the `Semantic` class and pass a `IChatClient` to it:
 ```csharp
-var semantic = new Semantic(deployment, endpoint, apiKey);
+var chatClient = new AzureOpenAIClient
+  (
+    new Uri(endpoint),
+    new System.ClientModel.ApiKeyCredential(apiKey)
+  )
+  .AsChatClient(deploymentName)
+
+var semantic = new Semantic(chatClient);
 ```
 That's it! You are ready to use Semantic Validation in your code. 😊
