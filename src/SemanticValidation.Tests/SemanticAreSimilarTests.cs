@@ -1,5 +1,6 @@
 ﻿using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
+using Microsoft.Extensions.Configuration;
 using Xunit.Abstractions;
 
 namespace SemanticValidation.Tests
@@ -13,15 +14,20 @@ namespace SemanticValidation.Tests
         {
             Output = output;
 
+            var builder = new ConfigurationBuilder()
+                .AddUserSecrets<SemanticAreSimilarTests>();
+
+            IConfiguration configuration = builder.Build();
+
             var apiKey =
-                Environment.GetEnvironmentVariable("openai-api-key", EnvironmentVariableTarget.User) ??
-                throw new Exception("No ApiKey in environment variables.");
+                configuration["AzureOpenAI_ApiKey"] ??
+                throw new Exception("No ApiKey is provided.");
             var endpoint =
-                Environment.GetEnvironmentVariable("openai-endpoint", EnvironmentVariableTarget.User) ??
-                throw new Exception("No Endpoint in environment variables.");
+                configuration["AzureOpenAI_Endpoint"] ??
+                throw new Exception("No Endpoint is provided.");
             var deploymentName =
-                Environment.GetEnvironmentVariable("openai-deployment-name", EnvironmentVariableTarget.User) ??
-                throw new Exception("No DeploymentName in environment variables.");
+                configuration["AzureOpenAI_Deployment"] ??
+                throw new Exception("No Deployment is provided.");
 
             Semantic = new Semantic(
                 new AzureOpenAIClient(

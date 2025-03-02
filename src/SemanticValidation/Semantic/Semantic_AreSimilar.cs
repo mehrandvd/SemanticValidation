@@ -52,7 +52,7 @@ public partial class Semantic
             """;
 
         var response =
-            await ChatClient.CompleteAsync(
+            await ChatClient.GetResponseAsync(
                 [
                     new ChatMessage(ChatRole.User, prompt)
                 ],
