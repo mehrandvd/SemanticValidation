@@ -61,7 +61,7 @@ public partial class Semantic
 
                 });
 
-        var answer = response.Message.Text ?? throw new InvalidOperationException("Can not assert the similarity");
+        var answer = response.Text ?? throw new InvalidOperationException("Can not assert the similarity");
 
         var result = SemanticUtils.PowerParseJson<SemanticValidationResult>(answer);
 
