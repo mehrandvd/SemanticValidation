@@ -57,7 +57,7 @@ namespace SemanticValidation
                         new ChatMessage(ChatRole.User, prompt)
                     ]);
 
-            var answer = response.Message.Text ?? throw new InvalidOperationException("Can not assert the condition");
+            var answer = response.Text ?? throw new InvalidOperationException("Can not assert the condition");
 
             var result = SemanticUtils.PowerParseJson<SemanticValidationResult>(answer);
 
