@@ -32,7 +32,7 @@ namespace SemanticValidation.Tests
                 new AzureOpenAIClient(
                     new Uri(endpoint),
                     new System.ClientModel.ApiKeyCredential(apiKey)
-                ).AsChatClient(deploymentName));
+                ).GetChatClient(deploymentName).AsIChatClient());
         }
 
         [Theory]
