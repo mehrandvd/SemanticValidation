@@ -1,6 +1,7 @@
 ﻿using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Configuration;
+
 using Xunit.Abstractions;
 
 namespace SemanticValidation.Tests
@@ -14,7 +15,8 @@ namespace SemanticValidation.Tests
             Output = output;
 
             var builder = new ConfigurationBuilder()
-                .AddUserSecrets<SemanticAreSimilarTests>();
+                .AddUserSecrets<SemanticAreSimilarTests>()
+                .AddEnvironmentVariables();
 
             IConfiguration configuration = builder.Build();
 
