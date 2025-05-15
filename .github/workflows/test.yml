@@ -22,4 +22,6 @@ jobs:
     - name: Build
       run: dotnet build ${{ env.SOLUTION_PATH }} --no-restore
     - name: Test
+      env:
+          AZUREOPENAI_APIKEY: ${{ secrets.AZUREOPENAI_APIKEY }}
       run: dotnet test ${{ env.SOLUTION_PATH }} --filter GitHubActions!=Skip --no-build --verbosity normal
