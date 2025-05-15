@@ -23,5 +23,7 @@ jobs:
       run: dotnet build ${{ env.SOLUTION_PATH }} --no-restore
     - name: Test
       env:
-          AZUREOPENAI_APIKEY: ${{ secrets.AZUREOPENAI_APIKEY }}
+          AzureOpenAI_ApiKey: ${{ secrets.AZUREOPENAI_APIKEY }}
+          AzureOpenAI_Deployment: ${{ secrets.AZUREOPENAI_DEPLOYMENT }}
+          AzureOpenAI_Endpoint: ${{ secrets.AZUREOPENAI_ENDPOINT }}
       run: dotnet test ${{ env.SOLUTION_PATH }} --filter GitHubActions!=Skip --no-build --verbosity normal
