@@ -23,8 +23,8 @@ public class TestBase
         Configuration = builder.Build();
 
         var apiKey =
-            Configuration["AZUREOPENAI_APIKEY"] ??
-            throw new Exception("No ApiKey is provided: AZUREOPENAI_APIKEY");
+            Configuration["AzureOpenAI_ApiKey"] ??
+            throw new Exception("No ApiKey is provided.");
         var endpoint =
             Configuration["AzureOpenAI_Endpoint"] ??
             throw new Exception("No Endpoint is provided.");
