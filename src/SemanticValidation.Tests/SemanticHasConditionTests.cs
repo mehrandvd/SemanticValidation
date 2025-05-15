@@ -1,42 +1,9 @@
-﻿using Azure.AI.OpenAI;
-using Microsoft.Extensions.AI;
-using Microsoft.Extensions.Configuration;
-
-using Xunit.Abstractions;
+﻿using Xunit.Abstractions;
 
 namespace SemanticValidation.Tests
 {
-    public class SemanticHasConditionTests
+    public class SemanticHasConditionTests(ITestOutputHelper output) : TestBase(output)
     {
-        private ITestOutputHelper Output { get; set; }
-        private Semantic Semantic { get; set; }
-        public SemanticHasConditionTests(ITestOutputHelper output)
-        {
-            Output = output;
-
-            var builder = new ConfigurationBuilder()
-                .AddUserSecrets<SemanticAreSimilarTests>()
-                .AddEnvironmentVariables();
-
-            IConfiguration configuration = builder.Build();
-
-            var apiKey =
-                configuration["AzureOpenAI_ApiKey"] ??
-                throw new Exception("No ApiKey is provided.");
-            var endpoint =
-                configuration["AzureOpenAI_Endpoint"] ??
-                throw new Exception("No Endpoint is provided.");
-            var deploymentName =
-                configuration["AzureOpenAI_Deployment"] ??
-                throw new Exception("No Deployment is provided.");
-
-            Semantic = new Semantic(
-                new AzureOpenAIClient(
-                    new Uri(endpoint),
-                    new System.ClientModel.ApiKeyCredential(apiKey)
-                ).GetChatClient(deploymentName).AsIChatClient());
-        }
-
         [Theory]
         [MemberData(nameof(GetHasConditionData))]
         public async Task HasCondition_True_MustWork(string text, string condition)

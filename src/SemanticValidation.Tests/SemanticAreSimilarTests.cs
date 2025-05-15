@@ -5,37 +5,8 @@ using Xunit.Abstractions;
 
 namespace SemanticValidation.Tests
 {
-    public class SemanticAreSimilarTests
+    public class SemanticAreSimilarTests(ITestOutputHelper output) : TestBase(output)
     {
-        private Semantic Semantic { get; set; }
-
-        private ITestOutputHelper Output { get; set; }
-        public SemanticAreSimilarTests(ITestOutputHelper output)
-        {
-            Output = output;
-
-            var builder = new ConfigurationBuilder()
-                .AddUserSecrets<SemanticAreSimilarTests>();
-
-            IConfiguration configuration = builder.Build();
-
-            var apiKey =
-                configuration["AzureOpenAI_ApiKey"] ??
-                throw new Exception("No ApiKey is provided.");
-            var endpoint =
-                configuration["AzureOpenAI_Endpoint"] ??
-                throw new Exception("No Endpoint is provided.");
-            var deploymentName =
-                configuration["AzureOpenAI_Deployment"] ??
-                throw new Exception("No Deployment is provided.");
-
-            Semantic = new Semantic(
-                new AzureOpenAIClient(
-                    new Uri(endpoint),
-                    new System.ClientModel.ApiKeyCredential(apiKey)
-                ).GetChatClient(deploymentName).AsIChatClient());
-        }
-
         [Theory]
         [MemberData(nameof(GetSimilarData))]
         public async Task AreSimilar_True_MustWork(string first, string second)
