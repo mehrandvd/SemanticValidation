@@ -52,7 +52,7 @@ public partial class Semantic
             """;
 
         var response =
-            await ChatClient.GetResponseAsync(
+            await ChatClient.GetResponseAsync<SemanticValidationResult>(
                 [
                     new ChatMessage(ChatRole.User, prompt)
                 ],
@@ -61,14 +61,12 @@ public partial class Semantic
 
                 });
 
-        var answer = response.Text ?? throw new InvalidOperationException("Can not assert the similarity");
+        var answer = response.Result ?? throw new InvalidOperationException("Can not assert the similarity");
 
-        var result = SemanticUtils.PowerParseJson<SemanticValidationResult>(answer);
-
-        if (result is null)
+        if (answer is null)
             throw new InvalidOperationException("Can not assert the similarity");
 
-        return result;
+        return answer;
     }
 
     /// <summary>

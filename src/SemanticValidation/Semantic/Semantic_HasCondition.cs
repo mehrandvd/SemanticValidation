@@ -46,25 +46,20 @@ namespace SemanticValidation
                     "success": true or false,
                     "message": "If success is false, explain (in the same language with text) here the difference"
                 }
-
-
-                RESULT: 
                 """;
 
             var response = 
-                await ChatClient.GetResponseAsync(
+                await ChatClient.GetResponseAsync<SemanticValidationResult>(
                     [
                         new ChatMessage(ChatRole.User, prompt)
                     ]);
 
-            var answer = response.Text ?? throw new InvalidOperationException("Can not assert the condition");
+            var answer = response.Result ?? throw new InvalidOperationException("Can not assert the condition");
 
-            var result = SemanticUtils.PowerParseJson<SemanticValidationResult>(answer);
-
-            if (result is null)
+            if (answer is null)
                 throw new InvalidOperationException("Can not assert the condition");
 
-            return result;
+            return answer;
         }
 
         /// <summary>
