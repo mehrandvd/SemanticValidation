@@ -21,7 +21,7 @@ namespace SemanticValidation
         /// <param name="condition">The condition</param>
         /// <returns></returns>
         /// <exception cref="InvalidOperationException">If the OpenAI was unable to generate a valid response.</exception>
-        public async Task<SemanticValidationResult> HasConditionAsync(string text, string condition)
+        public async Task<SemanticValidationResult> HasConditionAsync(string text, string condition, CancellationToken cancellationToken = default)
         {
             var prompt =
                 $$"""
@@ -50,9 +50,11 @@ namespace SemanticValidation
 
             var response = 
                 await ChatClient.GetResponseAsync<SemanticValidationResult>(
+                    messages: 
                     [
                         new ChatMessage(ChatRole.User, prompt)
-                    ]);
+                    ], 
+                    cancellationToken: cancellationToken);
 
             var answer = response.Result ?? throw new InvalidOperationException("Can not assert the condition");
 

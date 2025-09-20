@@ -21,7 +21,7 @@ public partial class Semantic
     /// <param name="second"></param>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException">If the OpenAI was unable to generate a valid response.</exception>
-    public async Task<SemanticValidationResult> AreSimilarAsync(string first, string second)
+    public async Task<SemanticValidationResult> AreSimilarAsync(string first, string second, CancellationToken cancellationToken = default)
     {
         var prompt =
             $$"""
@@ -53,13 +53,15 @@ public partial class Semantic
 
         var response =
             await ChatClient.GetResponseAsync<SemanticValidationResult>(
+                messages:
                 [
                     new ChatMessage(ChatRole.User, prompt)
                 ],
                 options: new ChatOptions
                 {
 
-                });
+                },
+                cancellationToken: cancellationToken);
 
         var answer = response.Result ?? throw new InvalidOperationException("Can not assert the similarity");
 
